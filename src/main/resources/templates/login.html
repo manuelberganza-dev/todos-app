@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Login</title>
+	
+	<link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}">
+
+</head>
+<body>
+	<header th:insert="~{fragments/menu :: menu-principal}"></header>
+
+
+	<section class="container mt-5">
+		<div class="row">
+			<div class="col-10 col-md-5 mx-auto">
+				<h2 class="text-center mb-4">Iniciar sesión</h2>
+
+				<div th:if="${param.error}" class="alert alert-danger" >
+					<span>Usuario o Contraseña incorrectos.</span>
+				</div>
+
+				<form name="form" th:action="@{/login}" method="post" class="card p-2">
+
+					<div class="mb-3">
+						<label for="username" class="form-label fw-bolder">Usuario</label>
+						<input type="text" name="username" class="form-control border-2 bg-secondary bg-opacity-10" id="username" placeholder="Nombre de usuario" required>
+					</div>
+		
+					<div class="mb-3">
+						<label for="password" class="form-label fw-bolder">Contraseña</label>
+						<input type="password" name="password" class="form-control border-2 bg-secondary bg-opacity-10" id="password" placeholder="Contraseña" required>
+					</div>
+				  
+				  
+				  	<button type="submit" class="btn btn-primary">Iniciar sesión</button>
+				</form>
+			</div>
+		</div>
+	</section>
+	
+	
+	<script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+</body>
+</html>

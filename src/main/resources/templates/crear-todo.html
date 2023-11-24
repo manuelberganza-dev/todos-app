@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+	<meta charset="UTF-8">
+	<title>Todos APP</title>
+	
+	<link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}">
+	<link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+	<header th:insert="~{fragments/menu :: menu-principal}"></header>
+	
+	
+	<section class="container">
+		<h2 class="text-center my-4">Ingrese su tarea</h2>
+		
+		<div class="row">
+			<div class="col-8 mx-auto">
+				<form th:action="@{/crear-todo}" method="post" class="bg-white p-3 rounded-2 border shadow-sm">
+
+					<div class="mb-3">
+						<label for="tarea" class="form-label fw-bolder">Descripción</label>
+				    	<input type="text" class="form-control border-2 bg-secondary bg-opacity-10" id="tarea" name="nombre" placeholder="Descripción" required>
+				  	</div>
+				  	
+					<div class="mb-3">
+						<label for="categoria" class="form-label fw-bolder">Categoría</label>
+				    	<select id="categoria" name="categoria" class="form-select border-2 bg-secondary bg-opacity-10" required>
+							<option th:value="${null}" selected disabled>-- Seleccionar categoría --</option>
+						  	<option th:each="categoria : ${categorias}" th:text="${categoria.nombre}" th:value="${categoria.id}"></option>
+						</select>
+				  	</div>
+			
+				  	<button type="submit" class="btn btn-primary">Agregar</button>
+				</form>
+			</div>
+		</div>
+
+	</section>
+
+	<section class="container-lg mt-5">
+
+		<div class="row d-flex justify-content-center">
+
+			<div th:each="tarea : ${tareas}" class="col-10 col-lg-8 mb-3 p-3 rounded bg-white shadow-sm d-flex flex-column">
+
+				<div class="d-flex align-items-center justify-content-between">
+					<p class="m-0 p-0 fs-6 text-break" th:text="${tarea.nombre}" ></p>
+
+					<div>
+						<a th:href="@{/editar/{id} (id=${tarea.id})}" class="btn btn-success">Editar</a>
+						<a th:href="@{/eliminar/{id} (id=${tarea.id})}" class="btn btn-danger">Eliminar</a>
+					</div>
+				</div>
+
+				<div class="d-flex">
+					<span class="badge text-bg-warning text-light mt-2 rounded-pill" th:text="${tarea.categoria.nombre}"></span>
+				</div>
+
+			</div>
+
+		</div>
+
+	</section>
+
+	<script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+</body>
+</html>

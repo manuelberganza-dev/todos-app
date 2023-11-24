@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eliminar Tarea</title>
+
+    <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}">
+</head>
+<body>
+
+<header th:insert="~{fragments/menu :: menu-principal}"></header>
+
+<section class="container">
+    <div class="vh-100 d-flex flex-column justify-content-center">
+        <div class="mb-4 text-center">
+            <h1>Tarea eliminada <span class="text-primary">Exitosamente.</span></h1>
+
+            <a th:href="@{/crear-todo}" class="btn btn-primary">Regresar</a>
+        </div>
+    </div>
+</section>
+
+
+<script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+</body>
+</html>
